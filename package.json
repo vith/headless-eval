@@ -1,6 +1,6 @@
 {
 	"name": "headless-eval",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "CLI tool to evaluate a JS snippet in a webpage context with headless chrome",
 	"bin": {
 		"headless-eval": "dist/cli.js"
