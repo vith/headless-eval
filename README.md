@@ -31,7 +31,7 @@ Options:
 $ headless-eval https://news.ycombinator.com '[...document.querySelectorAll("a.storylink")].slice(0, 3).map(a => `${a.textContent} - ${a.href}`)'
 Apple News No Longer Supports RSS - https://mjtsai.com/blog/2019/12/26/apple-news-no-longer-supports-rss/
 Darpa head resigns, moving on to industry - https://www.defensenews.com/breaking-news/2019/12/17/darpa-head-resigns-moving-on-to-industry/
-Scientists Likely Found Way to Grow New Teeth for Patients - https://www.sciencetimes.com/articles/24252/20191111/scientists-likely-found-way-to-grow-new-teeth-for-patients.htm```
+Scientists Likely Found Way to Grow New Teeth for Patients - https://www.sciencetimes.com/articles/24252/20191111/scientists-likely-found-way-to-grow-new-teeth-for-patients.htm
 ```
 
 ```console
