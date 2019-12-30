@@ -2,6 +2,8 @@
 
 > CLI tool to evaluate a JS snippet in a webpage context with headless chrome
 
+[![pipeline status](https://gitlab.com/vith/headless-eval/badges/master/pipeline.svg)](https://gitlab.com/vith/headless-eval/pipelines)
+
 ## Install
 
 ```console
