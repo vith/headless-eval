@@ -1,0 +1,6 @@
+image: vith/puppeteer
+
+test:
+  script:
+    - npm install
+    - npm test
