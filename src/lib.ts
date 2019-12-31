@@ -2,6 +2,8 @@ import { isArray } from 'util'
 
 import puppeteer, { Page } from 'puppeteer'
 
+import { HeadlessEvalOpts, optsWithDefaults } from './options'
+
 export default class HeadlessEval {
 	opts: HeadlessEvalOpts
 
@@ -40,20 +42,5 @@ export default class HeadlessEval {
 			return result.join('\n')
 
 		return result
-	}
-}
-
-type HeadlessEvalOpts = {
-	json: boolean,
-}
-
-const defaultOpts: HeadlessEvalOpts = {
-	json: false,
-}
-
-export function optsWithDefaults(partialOpts: Partial<HeadlessEvalOpts>): HeadlessEvalOpts {
-	return {
-		...defaultOpts,
-		...partialOpts,
 	}
 }
