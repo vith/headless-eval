@@ -16,7 +16,7 @@ program
 	.version(version)
 	.description(description!)
 	.option('-j, --json', 'output result as JSON')
-	.arguments('<url> <js snippet>')
+	.arguments('<url> <js_snippet>')
 	.action(main)
 
 program.parse(process.argv)

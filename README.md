@@ -15,7 +15,7 @@ $ npm i -g headless-eval
 
 ```console
 $ headless-eval -h
-Usage: headless-eval [options] <url> <j>
+Usage: headless-eval [options] <url> <js_snippet>
 
 CLI tool to evaluate a JS snippet in a webpage context with headless chrome
 
