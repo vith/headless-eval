@@ -52,7 +52,7 @@ test('extract sentences', async t => {
 		`(${sentencesQuerySelector})()`
 	)
 
-	t.is(actual, harvardSentences.join('\n'))
+	t.is(actual, harvardSentences.join('\n'), 'extracted sentences')
 })
 
 test('extract sentences as JSON', async t => {
@@ -65,7 +65,7 @@ test('extract sentences as JSON', async t => {
 		`(${sentencesQuerySelector})()`
 	)
 
-	t.deepEqual(JSON.parse(actualJSON), harvardSentences)
+	t.deepEqual(JSON.parse(actualJSON), harvardSentences, 'extracted sentences as json')
 })
 
 test('can reuse evaluator instance until closed', async t => {
