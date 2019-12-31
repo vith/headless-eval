@@ -1,24 +1,32 @@
 import { isArray } from 'util'
 
-import puppeteer, { Page } from 'puppeteer'
+import puppeteer, { Browser, Page } from 'puppeteer'
 
 import { HeadlessEvalOpts, optsWithDefaults } from './options'
 
 export default class HeadlessEval {
-	opts: HeadlessEvalOpts
+	private opts: HeadlessEvalOpts
+	private browserPromise: Promise<Browser>
 
 	constructor(opts?: Partial<HeadlessEvalOpts>) {
-		this.opts = optsWithDefaults(opts ?? {})
+		this.opts = optsWithDefaults(opts)
+		this.browserPromise = puppeteer.launch()
 	}
 
 	public async evalSnippet(url: string, snippet: string) {
-		const browser = await puppeteer.launch()
+		const browser = await this.browserPromise;
 		const page = await browser.newPage()
+
 		try {
 			return await this.doEvalSnippetInPage(page, url, snippet)
 		} finally {
-			await browser.close()
+			await page.close()
 		}
+	}
+
+	public async close(): Promise<void> {
+		const browser = await this.browserPromise
+		return browser.close()
 	}
 
 	private async doEvalSnippetInPage(page: Page, url: string, snippet: string) {

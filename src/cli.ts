@@ -28,4 +28,5 @@ async function main(url: string, snippet: string) {
 	const evaluator = new HeadlessEval(program.opts())
 	const result = await evaluator.evalSnippet(url, snippet)
 	console.log(result)
+	await evaluator.close()
 }

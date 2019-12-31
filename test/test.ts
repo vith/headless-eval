@@ -14,7 +14,7 @@ test.before(async t => {
 	const backend = new Koa
 	const router = new Router
 
-	router.get('/something', async ctx => {
+	router.get('/sentences', async ctx => {
 		ctx.body = await fs.promises.readFile('./test/sentences.html')
 		ctx.type = 'text/html'
 		ctx.status = HttpStatus.OK
@@ -28,10 +28,13 @@ test.before(async t => {
 	t.context = { port }
 })
 
-const sentencesQuerySelector = `
+const sentencesQuerySelector = () =>
 	[...document.querySelectorAll("ul#harvard-sentences > li")]
-		.map(li => li.innerText)
-`
+		.map(li => {
+			if (!(li instanceof HTMLLIElement))
+				throw new TypeError
+			return li.innerText
+		})
 
 const harvardSentences = [
 	'Oak is strong and also gives shade.',
@@ -45,8 +48,8 @@ test('extract sentences', async t => {
 	const evaluator = new HeadlessEval()
 
 	const actual = await evaluator.evalSnippet(
-		`http://localhost:${t.context.port}/something`,
-		sentencesQuerySelector
+		`http://localhost:${t.context.port}/sentences`,
+		`(${sentencesQuerySelector})()`
 	)
 
 	t.is(actual, harvardSentences.join('\n'))
@@ -58,9 +61,50 @@ test('extract sentences as JSON', async t => {
 	const jsonEvaluator = new HeadlessEval({ json: true })
 
 	const actualJSON = await jsonEvaluator.evalSnippet(
-		`http://localhost:${t.context.port}/something`,
-		sentencesQuerySelector
+		`http://localhost:${t.context.port}/sentences`,
+		`(${sentencesQuerySelector})()`
 	)
 
 	t.deepEqual(JSON.parse(actualJSON), harvardSentences)
+})
+
+test('can reuse evaluator instance until closed', async t => {
+	t.plan(3)
+
+	const evaluator = new HeadlessEval()
+
+	const actualSentences = await evaluator.evalSnippet(
+		`http://localhost:${t.context.port}/sentences`,
+		`(${sentencesQuerySelector})()`
+	)
+
+	t.is(
+		actualSentences,
+		harvardSentences.join('\n'),
+		'extracted sentences'
+	)
+
+	const getListId = () => document.querySelector('ul')!.id
+
+	const actualListId = await evaluator.evalSnippet(
+		`http://localhost:${t.context.port}/sentences`,
+		`(${getListId})()`
+	)
+
+	t.is(
+		actualListId,
+		'harvard-sentences',
+		'extracted list id'
+	)
+
+	evaluator.close()
+
+	await t.throwsAsync(async () =>
+		await evaluator.evalSnippet(
+			`http://localhost:${t.context.port}/sentences`,
+			'2+2'
+		),
+		{ message: 'Protocol error (Target.createTarget): Target closed.' },
+		"attempting to reuse closed instance throws an error"
+	)
 })
