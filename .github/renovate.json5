@@ -1,0 +1,9 @@
+{
+	packageRules: [
+		{
+			// slow down upgrades of unimportant packages that frequently publish new versions
+			packageNames: ['@types/node'],
+			extends: ['schedule:monthly']
+		},
+	],
+}
