@@ -1,12 +1,7 @@
 {
 	extends: [
 		'config:base',
-	],
-	packageRules: [
-		{
-			// slow down upgrades of unimportant packages that frequently publish new versions
-			packageNames: ['@types/node'],
-			extends: ['schedule:monthly']
-		},
+		'schedule:monthly',
+		':automergeMinor',
 	],
 }
