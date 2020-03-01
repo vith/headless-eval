@@ -3,5 +3,6 @@
 		'config:base',
 		'schedule:monthly',
 		':automergeMinor',
+		'group:allNonMajor',
 	],
 }
