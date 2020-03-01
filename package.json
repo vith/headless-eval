@@ -25,7 +25,7 @@
 	},
 	"devDependencies": {
 		"@koa/router": "8.0.8",
-		"@types/koa": "2.11.0",
+		"@types/koa": "2.11.2",
 		"@types/koa__router": "8.0.2",
 		"@types/node": "13.7.0",
 		"@types/puppeteer": "2.0.0",
