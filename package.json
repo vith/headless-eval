@@ -20,7 +20,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"commander": "^4.0.1",
-		"puppeteer": "^2.0.0",
+		"puppeteer": "^3.0.0",
 		"read-pkg-up": "^7.0.1"
 	},
 	"devDependencies": {
