@@ -1,55 +1,21 @@
-import fs from 'fs'
-
-import Router from '@koa/router'
-import avaTest, { TestInterface } from 'ava'
-import getPort from 'get-port'
-import HttpStatus from 'http-status-codes'
-import Koa from 'koa'
+import avaTest, { ExecutionContext, TestInterface } from 'ava'
 
 import HeadlessEval from '../src/lib'
+import { harvardSentences, sentencesQuerySelectorStringified } from './fixtures/data'
+import startServer, { PortContext } from './fixtures/testServer'
 
-const test = avaTest as TestInterface<{ port: number }>
+const test = avaTest as TestInterface<PortContext>
 
-test.before(async t => {
-	const backend = new Koa
-	const router = new Router
+test.before(startServer)
 
-	router.get('/sentences', async ctx => {
-		ctx.body = await fs.promises.readFile('./test/sentences.html')
-		ctx.type = 'text/html'
-		ctx.status = HttpStatus.OK
-	})
-
-	backend.use(router.routes())
-	backend.use(router.allowedMethods())
-
-	const port = await getPort()
-	backend.listen(port)
-	t.context = { port }
-})
-
-const sentencesQuerySelector = () =>
-	[...document.querySelectorAll("ul#harvard-sentences > li")]
-		.map(li => {
-			if (!(li instanceof HTMLLIElement))
-				throw new TypeError
-			return li.innerText
-		})
-
-const harvardSentences = [
-	'Oak is strong and also gives shade.',
-	'Cats and dogs each hate the other.',
-	'The pipe began to rust while new.',
-]
-
-test('extract sentences', async t => {
+test('extract sentences', async (t: ExecutionContext<PortContext>) => {
 	t.plan(1)
 
 	const evaluator = new HeadlessEval()
 
 	const actual = await evaluator.evalSnippet(
 		`http://localhost:${t.context.port}/sentences`,
-		`(${sentencesQuerySelector})()`
+		sentencesQuerySelectorStringified
 	)
 
 	t.is(actual, harvardSentences.join('\n'), 'extracted sentences')
@@ -62,7 +28,7 @@ test('extract sentences as JSON', async t => {
 
 	const actualJSON = await jsonEvaluator.evalSnippet(
 		`http://localhost:${t.context.port}/sentences`,
-		`(${sentencesQuerySelector})()`
+		sentencesQuerySelectorStringified
 	)
 
 	t.deepEqual(JSON.parse(actualJSON), harvardSentences, 'extracted sentences as json')
@@ -75,7 +41,7 @@ test('can reuse evaluator instance until closed', async t => {
 
 	const actualSentences = await evaluator.evalSnippet(
 		`http://localhost:${t.context.port}/sentences`,
-		`(${sentencesQuerySelector})()`
+		sentencesQuerySelectorStringified
 	)
 
 	t.is(
