@@ -1,5 +1,4 @@
 import path from 'path'
-import { promisify } from 'util'
 import pkgDir from 'pkg-dir'
 
 import avaTest, { ExecutionContext, TestInterface } from 'ava'
@@ -21,7 +20,8 @@ const test = avaTest as TestInterface<PortAndCliContext>
 test.before(startServer)
 
 test.before(async function findPaths(t: ExecutionContext<CliContext>) {
-	await promisify(npm.load)()
+	// @ts-expect-error upstream types are wrong
+	await npm.config.load()
 	t.context.tsNodePath = path.join(npm.bin, 'ts-node')
 
 	const headlessEvalPkgDir = await pkgDir()
