@@ -3,4 +3,4 @@ image: vith/puppeteer
 test:
   script:
     - npm install
-    - npm test -- --timeout=30s
+    - npm test -- --timeout=60s
