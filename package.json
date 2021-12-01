@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"@koa/router": "10.1.1",
 		"@types/koa": "2.13.4",
-		"@types/koa__router": "8.0.8",
+		"@types/koa__router": "8.0.11",
 		"@types/node": "13.13.51",
 		"@types/npm": "2.0.32",
 		"@types/puppeteer": "5.4.4",
@@ -38,7 +38,7 @@
 		"npm": "7.24.2",
 		"pkg-dir": "5.0.0",
 		"ts-node": "9.1.1",
-		"typescript": "4.4.4"
+		"typescript": "4.5.2"
 	},
 	"ava": {
 		"extensions": [
