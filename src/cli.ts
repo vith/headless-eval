@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander'
-import readPkgUp from 'read-pkg-up'
 
-import HeadlessEval from './lib'
+import { pkgInfo } from './pkg-info.js'
+import HeadlessEval from './lib.js'
 
 const program = new Command
 
-const pkg = readPkgUp.sync({ cwd: __dirname })
+const { name, version, description } = pkgInfo.packageJson
 
-const { name, version, description } = pkg!.packageJson
 
 program
 	.name(name)

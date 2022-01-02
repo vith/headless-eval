@@ -1,8 +1,8 @@
 import avaTest, { ExecutionContext, TestInterface } from 'ava'
 
-import HeadlessEval from '../src/lib'
-import { harvardSentences, sentencesQuerySelectorStringified } from './fixtures/data'
-import startServer, { PortContext } from './fixtures/testServer'
+import HeadlessEval from '../src/lib.js'
+import { harvardSentences, sentencesQuerySelectorStringified } from './fixtures/data.js'
+import startServer, { PortContext } from './fixtures/testServer.js'
 
 const test = avaTest as TestInterface<PortContext>
 

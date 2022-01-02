@@ -1,8 +1,6 @@
-import { isArray } from 'util'
-
 import puppeteer, { Browser, Page } from 'puppeteer'
 
-import { HeadlessEvalOpts, optsWithDefaults } from './options'
+import { HeadlessEvalOpts, optsWithDefaults } from './options.js'
 
 export default class HeadlessEval {
 	private opts: HeadlessEvalOpts
@@ -46,7 +44,7 @@ export default class HeadlessEval {
 		if (this.opts.json)
 			return JSON.stringify(result, undefined, '\t')
 
-		if (isArray(result))
+		if (Array.isArray(result))
 			return result.join('\n')
 
 		return result
