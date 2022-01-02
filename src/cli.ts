@@ -18,11 +18,9 @@ program
 	.option('-j, --json', 'output result as JSON')
 	.arguments('<url> <js_snippet>')
 	.action(main)
+	.showHelpAfterError()
 
 program.parse(process.argv)
-
-if (program.args.length < 2)
-	program.outputHelp()
 
 async function main(url: string, snippet: string) {
 	const evaluator = new HeadlessEval(program.opts())
