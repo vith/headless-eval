@@ -2,5 +2,5 @@ image: vith/puppeteer
 
 test:
   script:
-    - npm install
+    - npm ci
     - npm test -- --timeout=60s
