@@ -40,7 +40,7 @@
 		"koa": "2.13.4",
 		"pkg-dir": "6.0.1",
 		"ts-node": "10.4.0",
-		"typescript": "4.5.4"
+		"typescript": "4.5.5"
 	},
 	"ava": {
 		"files": [
