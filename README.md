@@ -1,4 +1,4 @@
-# headless-eval [![pipeline status](https://gitlab.com/vith/headless-eval/badges/master/pipeline.svg)](https://gitlab.com/vith/headless-eval/pipelines) [![dependency status](https://david-dm.org/vith/headless-eval.svg)](https://david-dm.org/vith/headless-eval)
+# headless-eval [![pipeline status](https://gitlab.com/vith/headless-eval/badges/master/pipeline.svg)](https://gitlab.com/vith/headless-eval/pipelines) ![dependency status](https://img.shields.io/librariesio/release/npm/headless-eval)
 
 > CLI tool to evaluate a JS snippet in a webpage context with headless chrome
 
