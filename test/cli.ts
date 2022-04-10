@@ -1,7 +1,7 @@
 import path from 'path'
 import { packageDirectory } from 'pkg-dir'
 
-import avaTest, { ExecutionContext, TestInterface } from 'ava'
+import avaTest, { ExecutionContext, TestFn } from 'ava'
 import { execa } from 'execa'
 
 import { harvardSentences, sentencesQuerySelectorStringified } from './fixtures/data.js'
@@ -13,7 +13,7 @@ type CliContext = {
 
 type PortAndCliContext = PortContext & CliContext
 
-const test = avaTest as TestInterface<PortAndCliContext>
+const test = avaTest as TestFn<PortAndCliContext>
 
 test.before(startServer)
 

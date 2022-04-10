@@ -1,10 +1,10 @@
-import avaTest, { ExecutionContext, TestInterface } from 'ava'
+import avaTest, { ExecutionContext, TestFn } from 'ava'
 
 import HeadlessEval from '../src/lib.js'
 import { harvardSentences, sentencesQuerySelectorStringified } from './fixtures/data.js'
 import startServer, { PortContext } from './fixtures/testServer.js'
 
-const test = avaTest as TestInterface<PortContext>
+const test = avaTest as TestFn<PortContext>
 
 test.before(startServer)
 
