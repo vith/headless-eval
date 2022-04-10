@@ -1,6 +1,6 @@
 {
 	"name": "headless-eval",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "CLI tool to evaluate a JS snippet in a webpage context with headless chrome",
 	"homepage": "https://github.com/vith/headless-eval",
 	"repository": {
