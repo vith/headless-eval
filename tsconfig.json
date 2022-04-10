@@ -1,5 +1,5 @@
 {
-	"exclude": ["test/", "dist/"],
+	"include": ["src/"],
 	"compilerOptions": {
 		"target": "ES2021",
 		"module": "es2022",
