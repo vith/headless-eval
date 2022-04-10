@@ -5,11 +5,11 @@ export const harvardSentences = [
 ]
 
 export const sentencesQuerySelector = () =>
-[...document.querySelectorAll("ul#harvard-sentences > li")]
-	.map(li => {
-		if (!(li instanceof HTMLLIElement))
-			throw new TypeError
-		return li.innerText
-	})
+	[...document.querySelectorAll("ul#harvard-sentences > li")]
+		.map(li => {
+			if (!(li instanceof HTMLLIElement))
+				throw new TypeError
+			return li.innerText
+		})
 
 export const sentencesQuerySelectorStringified = `(${sentencesQuerySelector})()`
