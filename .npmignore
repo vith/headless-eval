@@ -1,5 +1,10 @@
-node_modules/
-test/
-.vscode/
-.editorconfig
-tsconfig.json
+/.editorconfig
+/.github/
+/.gitlab-ci.yml
+/.history/
+/.vscode/
+/builds/
+/node_modules/
+/src/
+/test/
+/tsconfig.json
