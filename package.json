@@ -7,20 +7,32 @@
 		"type": "git",
 		"url": "https://github.com/vith/headless-eval.git"
 	},
+	"license": "ISC",
+	"author": "Jason Papakostas <vithos@gmail.com>",
+	"type": "module",
+	"main": "dist/lib.js",
 	"bin": {
 		"headless-eval": "dist/cli.js"
 	},
-	"main": "dist/lib.js",
-	"type": "module",
 	"scripts": {
 		"build": "tsc",
-		"test": "ava",
-		"test:local-gitlab-ci": "gitlab-runner exec shell test",
+		"prepare": "npm run build",
 		"start": "node --loader ts-node/esm src/cli.ts",
-		"prepare": "npm run build"
+		"test": "ava",
+		"test:local-gitlab-ci": "gitlab-runner exec shell test"
 	},
-	"author": "Jason Papakostas <vithos@gmail.com>",
-	"license": "ISC",
+	"ava": {
+		"extensions": {
+			"ts": "module"
+		},
+		"files": [
+			"test/**/*",
+			"!test/fixtures/**/*"
+		],
+		"nodeArguments": [
+			"--loader=ts-node/esm"
+		]
+	},
 	"dependencies": {
 		"commander": "^9.1.0",
 		"puppeteer": "^13.5.2",
@@ -41,17 +53,5 @@
 		"pkg-dir": "6.0.1",
 		"ts-node": "10.7.0",
 		"typescript": "4.6.3"
-	},
-	"ava": {
-		"files": [
-			"test/**/*",
-			"!test/fixtures/**/*"
-		],
-		"extensions": {
-			"ts": "module"
-		},
-		"nodeArguments": [
-			"--loader=ts-node/esm"
-		]
 	}
 }
