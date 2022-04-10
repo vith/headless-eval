@@ -33,7 +33,7 @@
 		"@types/node": "17.0.6",
 		"@types/npm": "7.19.0",
 		"@types/puppeteer": "5.4.5",
-		"ava": "3.15.0",
+		"ava": "4.2.0",
 		"execa": "6.1.0",
 		"get-port": "6.1.2",
 		"http-status-codes": "2.2.0",
