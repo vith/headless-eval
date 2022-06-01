@@ -51,7 +51,7 @@
 		"http-status-codes": "2.2.0",
 		"koa": "2.13.4",
 		"pkg-dir": "6.0.1",
-		"ts-node": "10.7.0",
-		"typescript": "4.6.4"
+		"ts-node": "10.8.0",
+		"typescript": "4.7.2"
 	}
 }
